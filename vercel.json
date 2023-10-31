@@ -1,0 +1,3 @@
+{
+    "rewrites": [{ "source": "/node-app/src/(.*)", "destination": "/api" }]
+}

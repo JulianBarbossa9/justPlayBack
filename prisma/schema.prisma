@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Game {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  startTime   DateTime
+  endTime     DateTime
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  city        City     @relation(fields: [cityId], references: [id])
+  cityId      Int
+  sport       Sport    @relation(fields: [sportId], references: [id])
+  sportId     Int
+}
+
+model City {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  games       Game[]
+}
+
+model Sport {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String?
+  image       String? @default("https://ih1.redbubble.net/image.1406735893.2454/st,small,845x845-pad,1000x1000,f8f8f8.jpg")
+  team        Int?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  games       Game[]
+}
