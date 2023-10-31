@@ -24,7 +24,7 @@ db.$connect().then(() => {
   process.exit(1);
 })
 
-// export default app;
+export default app;
 
 
 
