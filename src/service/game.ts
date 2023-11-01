@@ -3,8 +3,52 @@ import { GameInterface, GameShowAllInterface } from "../interface/game.interface
 //This is the logic business
 
 
-const insertGame = async (game: GameInterface): Promise<GameInterface> => {
-  const newGame = await db.game.create({data: game});
+const insertGame = async (game: GameInterface): Promise<GameShowAllInterface> => {
+  const newGame = await db.game.create({
+    data: {
+      name: game.name,
+      description: game.description,
+      startTime: game.startTime,
+      endTime: game.endTime,
+      sport: {
+        connect: {
+          id: game.sportId
+        }
+      },
+      city: {
+        connect: {
+          id: game.cityId
+        }
+      }
+    },
+    select: {
+      id: true,
+      name: true,
+      description: true,
+      startTime: true,
+      endTime: true,
+      city: {
+        select: {
+          id: true,
+          name: true,
+          description: true,
+          createdAt: true,
+          updatedAt: true
+        }
+      },
+      sport: {
+        select: {
+          id: true,
+          name: true,
+          image: true,
+          description: true,
+          team: true,
+          createdAt: true,
+          updatedAt: true
+        }
+      }
+    }
+  });
   return newGame;
 }
 
