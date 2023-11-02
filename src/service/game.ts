@@ -86,8 +86,38 @@ const getAllGames = async (): Promise<GameShowAllInterface[]> => {
 };
 
 
-const updateGameData = async (id: number, game: GameInterface): Promise<GameInterface> => {
-  const gameUpdated = await db.game.update({where: {id}, data: game});
+const updateGameData = async (id: number, game: GameInterface): Promise<GameShowAllInterface> => {
+  const gameUpdated = await db.game.update({
+    where: {id},
+    data: game,
+    select: {
+      id: true,
+      name: true,
+      description: true,
+      startTime: true,
+      endTime: true,
+      city: {
+        select: {
+          id: true,
+          name: true,
+          description: true,
+          createdAt: true,
+          updatedAt: true
+        }
+      },
+      sport: {
+        select: {
+          id: true,
+          name: true,
+          image: true,
+          description: true,
+          team: true,
+          createdAt: true,
+          updatedAt: true
+        }
+      }
+    }
+  });
   return gameUpdated;
 }
 
