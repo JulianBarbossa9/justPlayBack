@@ -9,12 +9,12 @@ Clonar el repositorio, en la terminal deseada copie lo siguiente
 ```bash
 git clone https://github.com/JulianBarbossa9/justPlayBack.git
 ```
-Despues de esto vamos a la carpeta creada con:
+Despues de esto vamos a la carpeta creada en la linea de comandos escribimos lo siguiente:
 ```bash
 cd justPlayBack
 ```
 
-Luego de esto descargamos dependencias con:
+Luego de esto descargamos dependencias del proyecto con:
 ```bash
 npm install
 ```
