@@ -38,3 +38,8 @@ Server is running on port http://localhost:3001
 
 Con esto ya esta el server arriba
 
+Si quiere ver la base de datos en prisma puede ejecutar el siguiente comando:
+```bash
+npx prisma studio
+```
+
